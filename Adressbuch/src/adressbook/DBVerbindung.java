@@ -60,9 +60,23 @@ public class DBVerbindung
 		}
 		catch (SQLException err)
 		{
-			
+			System.out.println("Error "+err);
 			rs = null;
 			return rs;
+		}
+	}
+	
+	public void schreibe(String pSQL)
+	{
+		try
+		{
+			stmtSQL.execute(pSQL);
+			
+		}
+		catch (SQLException err)
+		{
+			System.out.println("Error "+err);
+			
 		}
 	}
 

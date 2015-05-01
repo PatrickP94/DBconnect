@@ -125,6 +125,7 @@ public class Adress {
 			adr1.setPhone(rsA.getString("phone"));
 			adr1.setMobile(rsA.getString("mobile"));
 			adr1.setNumber(rsA.getInt("number"));
+			adr1.setStreet(rsA.getString("street"));
 			adr1.setCity(rsA.getString("city"));
 			adr1.setPostcode(rsA.getString("postcode"));
 			adr1.setCountry(rsA.getString("country"));
@@ -138,17 +139,60 @@ public class Adress {
 		
 	}
 	
-	public void save(Adress adr){
-		int pruefid=adr.getId();
+	public void save() throws SQLException{
+		int pruefid=this.getId();
+		int i=0;
 		DBVerbindung verbindung = new DBVerbindung();
 		verbindung.oeffneDB();
 		mSQL="select * from address where id="+pruefid;
 		ResultSet rsA;
 		rsA = verbindung.lesen(mSQL);
-		if (rsA==null){
-			mSQL="insert into address * values ("+adr.getId()+","+adr.getName()+","
-					+adr.getChristianname();
+		while (rsA.next()){
+			i++;
 		}
+		if (i==0){
+			String birthday = this.getBirthday();
+			birthday=birthday.replaceAll("-", "");
+			this.setBirthday(birthday);
+			System.out.println("Hier: "+this.getBirthday());
+			mSQL="insert into address values ("+this.getId()+",'"+this.getName()+"','"
+					+this.getChristianname()+"','"+this.getEmail()+"','"+
+			this.getAddressform()+"','"+
+			this.getPhone()+"','"+
+			this.getMobile()+"','"+
+			this.getStreet()+"',"+
+			this.getNumber()+",'"+
+			this.getCity()+"',"+
+			this.getPostcode()+",'"+
+			this.getCountry()+"',"+
+			this.getBirthday()+")";
+			System.out.println(mSQL);
+			verbindung.schreibe(mSQL);
+			System.out.println("fertig");
+		}
+		else{
+			String birthday = this.getBirthday();
+			birthday=birthday.replaceAll("-", "");
+			this.setBirthday(birthday);
+			System.out.println("Hier: "+this.getBirthday());
+			mSQL="update address set id="+this.getId()+",name='"+this.getName()+"',christianname='"
+					+this.getChristianname()+"',email='"+this.getEmail()+"',addressform='"+
+			this.getAddressform()+"',phone='"+
+			this.getPhone()+"',mobile='"+
+			this.getMobile()+"',street='"+
+			this.getStreet()+"',number="+
+			this.getNumber()+",city='"+
+			this.getCity()+"',postcode="+
+			this.getPostcode()+",country='"+
+			this.getCountry()+"',birthday="+
+			this.getBirthday()+
+			" Where id="+this.getId();
+			System.out.println(mSQL);
+			verbindung.schreibe(mSQL);
+			System.out.println("fertig");
+		}
+		
+		
 		
 	}
 	
