@@ -106,8 +106,7 @@ public class Adress {
 		
 	}
 	
-	public Adress read(int id) throws SQLException {
-		Adress adr1 = new Adress();
+	public void read(int id) throws SQLException {
 		
 		DBVerbindung verbindung = new DBVerbindung();
 		verbindung.oeffneDB();
@@ -117,25 +116,25 @@ public class Adress {
 		while (rsA.next()) { 
 			System.out.println(rsA.getString("addressform")+" "+rsA.getString("christianname")+" "+rsA.getString("name")+" aus "+rsA.getString("city"));
 			
-			adr1.setId(rsA.getInt("id"));
-			adr1.setName(rsA.getString("name"));
-			adr1.setChristianname(rsA.getString("christianname"));
-			adr1.setEmail(rsA.getString("email"));
-			adr1.setAddressform(rsA.getString("addressform"));
-			adr1.setPhone(rsA.getString("phone"));
-			adr1.setMobile(rsA.getString("mobile"));
-			adr1.setNumber(rsA.getInt("number"));
-			adr1.setStreet(rsA.getString("street"));
-			adr1.setCity(rsA.getString("city"));
-			adr1.setPostcode(rsA.getString("postcode"));
-			adr1.setCountry(rsA.getString("country"));
-			adr1.setBirthday(rsA.getString("birthday"));
+			this.setId(rsA.getInt("id"));
+			this.setName(rsA.getString("name"));
+			this.setChristianname(rsA.getString("christianname"));
+			this.setEmail(rsA.getString("email"));
+			this.setAddressform(rsA.getString("addressform"));
+			this.setPhone(rsA.getString("phone"));
+			this.setMobile(rsA.getString("mobile"));
+			this.setNumber(rsA.getInt("number"));
+			this.setStreet(rsA.getString("street"));
+			this.setCity(rsA.getString("city"));
+			this.setPostcode(rsA.getString("postcode"));
+			this.setCountry(rsA.getString("country"));
+			this.setBirthday(rsA.getString("birthday"));
 			}
 		
 		rsA.close();
 		//verbindung.schliesseDB();
-		System.out.print (adr1.getChristianname()+" "+adr1.getName()+" "+adr1.getBirthday()+" ");
-		return adr1;
+		System.out.print (this.getChristianname()+" "+this.getName()+" "+this.getBirthday()+" ");
+		
 		
 	}
 	

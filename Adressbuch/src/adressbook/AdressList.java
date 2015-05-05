@@ -36,7 +36,7 @@ public class AdressList {
 			System.out.println(rsA.getString("addressform")+" "+rsA.getString("christianname")+" "+rsA.getString("name")+" aus "+rsA.getString("city"));
 			Adress adress=new Adress();
 			int id = rsA.getInt("id");
-			adress=adress.read(id);
+			adress.read(id);
 			liste.add(adress);
 			System.out.println(liste.get(0).christianname);
 			}

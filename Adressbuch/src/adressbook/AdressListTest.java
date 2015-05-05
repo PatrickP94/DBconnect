@@ -10,7 +10,7 @@ public class AdressListTest {
 		
 		//adresslist.setSuchtext("Preiß");
 		adresslist.getListe();
-		adresslist.delete(999);
+		//adresslist.delete(999);
 	}
 
 }

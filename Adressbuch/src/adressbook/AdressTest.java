@@ -8,9 +8,9 @@ public class AdressTest {
 		
 		Adress adress1 = new Adress();
 		
-		adress1=adress1.read(333);
+		adress1.read(14);
 		adress1.setId(0);
-		adress1.setName("Preiß");
+		//adress1.setName("Preiß");
 		adress1.save();
 		
 	}
