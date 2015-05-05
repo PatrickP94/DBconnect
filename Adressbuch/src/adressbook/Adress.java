@@ -150,12 +150,13 @@ public class Adress {
 		while (rsA.next()){
 			i++;
 		}
-		if (i==0){
+		if (i==0 ||pruefid==0){
 			String birthday = this.getBirthday();
 			birthday=birthday.replaceAll("-", "");
 			this.setBirthday(birthday);
 			System.out.println("Hier: "+this.getBirthday());
-			mSQL="insert into address values ("+this.getId()+",'"+this.getName()+"','"
+			mSQL="insert into address(Name, Christianname, Email, Addressform, Phone, "
+					+ "Mobile, Street, Number, City, Postcode, Country, Birthday) values ('"+this.getName()+"','"
 					+this.getChristianname()+"','"+this.getEmail()+"','"+
 			this.getAddressform()+"','"+
 			this.getPhone()+"','"+
