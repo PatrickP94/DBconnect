@@ -39,7 +39,7 @@
       </c:forEach>
 	
 	<br><br>
-    <form method="Post" action="AdresseAnlegen.jsp">
+    <form method="Post" action="AdressForm.jsp">
     <button type="submit">Neuen anlegen</button><br>
     </form>
     </div>

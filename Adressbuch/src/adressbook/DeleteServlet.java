@@ -27,10 +27,12 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		
 		AdressList adr = new AdressList();
 		adr.delete(id);
 		response.sendRedirect( "/Adressbuch/AddressList.jsp" );
+		
 			}
 
-	
+	 
 }

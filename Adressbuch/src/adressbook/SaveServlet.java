@@ -41,11 +41,30 @@ public class SaveServlet extends HttpServlet {
 		adr.setStreet(request.getParameter("street"));
 		try {
 			adr.save();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
 		}
-		 PrintWriter out = response.getWriter();		 
+		
+		if (adr.fehler==true){
+			PrintWriter out = response.getWriter();
+			out.println("<h1>Änderungen erfolgreich gespeichert</h1><br><br>");
+			if(request.getParameter("id")==null){
+				out.println("<a href='/Adressbuch/AddressList.jsp' class='btn btn-default'>Zurück</a>");
+			}
+			else{
+				out.println("<a href='/Adressbuch/Address.jsp?id="+request.getParameter("id")+"class='btn btn-default'>Zurück</a>");
+			}
+		}
+		if (adr.fehler==false){
+			PrintWriter out = response.getWriter();
+			out.println("<h1>Änderungen erfolgreich gespeichert</h1><br><br>");
+			if(request.getParameter("id")==null){
+				out.println("<a href='/Adressbuch/AddressList.jsp' class='btn btn-default'>Zurück</a>");
+			}
+			else{
+				out.println("<a href='/Adressbuch/Address.jsp?id="+request.getParameter("id")+"'class='btn btn-default'>Zurück</a>");
+			}
+			
+		}
 	}
 
 

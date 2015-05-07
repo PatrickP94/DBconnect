@@ -15,7 +15,7 @@ ${adress.read(param.id)}
             <strong>Geburtstag:</strong> ${adress.birthday}
   
            <a href="/Adressbuch/AddressList.jsp" class="btn btn-default">Zurück</a>
-           <a href="/Adressbuch/AdresseAnlegen.jsp?id=${param.id}" class="btn btn-primary">Bearbeiten</a>
+           <a href="/Adressbuch/AdressForm.jsp?id=${param.id}" class="btn btn-primary">Bearbeiten</a>
            <form method="Post" action="DeleteServlet">
            <button type="submit" name="id" value="${adress.id}">Löschen</button><br>
            </form>

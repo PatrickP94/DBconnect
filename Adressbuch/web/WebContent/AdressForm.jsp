@@ -3,18 +3,20 @@
 
 <jsp:useBean id="adress" class="adressbook.Adress" scope="request"></jsp:useBean>
 
-${adress.read(param.id)}
-
-
+    <c:catch var="catchException">
+   	 ${adress.read(param.id)}
+    </c:catch>
+    
     <div class="page-header">
       <h1>Adresse bearbeiten</h1>
     </div>
-    <c:if test="${param.error != null}">
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            ${param.error}
+
+    <c:if test="${catchException != null}">
+        	<h1>Es ist ein Fehler aufgetreten</h1>
+        	${catchException}
         </div>
     </c:if>
+    <c:if test="${catchException == null}">
     <form method="GET" action="SaveServlet"  accept-charset="utf-8">
         <c:if test="${param.id != null}">
             <input name="id" type="hidden" value="${param.id}"/>
@@ -92,7 +94,13 @@ ${adress.read(param.id)}
             </div>
         </div>
         <hr/>
-
+        <c:if test="${param.id == null }">
+        <a href="/Adressbuch/AddressList.jsp" class="btn btn-primary">Abbrechen</a>
+        </c:if>
+        <c:if test="${param.id != null }">
+		<a href="/Adressbuch/Address.jsp?id=${param.id}" class="btn btn-primary">Abbrechen</a>
+		</c:if>
         <button type="submit" >Speichern</button>
     </form>
- 
+
+ </c:if>

@@ -8,6 +8,11 @@ import java.sql.Statement;
 
 public class Adress {
 	String mSQL;
+	public boolean fehler=false;
+	public void setFehler(boolean fehler) {
+		this.fehler = fehler;
+	}
+
 	public int id;
 	public String name;
 	public String christianname;
@@ -167,7 +172,13 @@ public class Adress {
 			this.getCountry()+"',"+
 			this.getBirthday()+")";
 			System.out.println(mSQL);
-			verbindung.schreibe(mSQL);
+			try {
+				verbindung.schreibe(mSQL);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				fehler=true;
+			}
 			System.out.println("fertig");
 		}
 		else{
@@ -188,7 +199,12 @@ public class Adress {
 			this.getBirthday()+
 			" Where id="+this.getId();
 			System.out.println(mSQL);
-			verbindung.schreibe(mSQL);
+			try {
+				verbindung.schreibe(mSQL);
+			} catch (Exception e) {
+				fehler=true;
+				e.printStackTrace();
+			}
 			System.out.println("fertig");
 		}
 		
