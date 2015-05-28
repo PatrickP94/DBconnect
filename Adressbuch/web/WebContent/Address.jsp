@@ -15,8 +15,11 @@ ${adress.read(param.id)}
             <strong>Geburtstag:</strong> ${adress.birthday}
   
            <a href="/Adressbuch/AddressList.jsp" class="btn btn-default">Zurück</a>
+           <c:if test="${(pageContext.request.isUserInRole('administrator'))||
+              (pageContext.request.isUserInRole('admin7'))&&(adress.postcode>69999) && (adress.postcode<80000)}">
            <a href="/Adressbuch/AdressForm.jsp?id=${param.id}" class="btn btn-primary">Bearbeiten</a>
            <form method="Post" action="DeleteServlet">
            <button type="submit" name="id" value="${adress.id}">Löschen</button><br>
+           </c:if>
            </form>
            

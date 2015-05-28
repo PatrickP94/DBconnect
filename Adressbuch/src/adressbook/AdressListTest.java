@@ -8,7 +8,7 @@ public class AdressListTest {
 
 		AdressList adresslist = new AdressList();
 		
-		//adresslist.setSuchtext("Preiß");
+		adresslist.setSuchtext("Preiß");
 		adresslist.getListe();
 		//adresslist.delete(999);
 	}

@@ -30,18 +30,23 @@
             <em>Telefon:</em> ${adress.phone}<br>
             <em>Mobil:</em> ${adress.mobile}<br>
             <em>Geburtstag:</em> ${adress.birthday}<br>
-     
+           
+              
+              <c:if test="${(pageContext.request.isUserInRole('administrator'))||
+              (pageContext.request.isUserInRole('admin7'))&&(adress.postcode>69999) && (adress.postcode<80000)}">
               <a href="/Adressbuch/Address.jsp?id=${adress.id}">Details</a><br>
               <form method="Post" action="DeleteServlet">
               <button type="submit" name="id" value="${adress.id}">Löschen</button><br>
         	  </form>
-         
+        	 </c:if>
+   
       </c:forEach>
-	
+	<c:if test="${pageContext.request.isUserInRole('administrator')}">
 	<br><br>
     <form method="Post" action="AdressForm.jsp">
     <button type="submit">Neuen anlegen</button><br>
     </form>
+    </c:if>
     </div>
 
 

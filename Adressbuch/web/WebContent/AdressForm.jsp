@@ -2,9 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:useBean id="adress" class="adressbook.Adress" scope="request"></jsp:useBean>
-
-    <c:catch var="catchException">
    	 ${adress.read(param.id)}
+<c:if test="${(pageContext.request.isUserInRole('administrator'))||
+              (pageContext.request.isUserInRole('admin7'))&&(adress.postcode>69999) && (adress.postcode<80000)}">
+    <c:catch var="catchException">
+
     </c:catch>
     
     <div class="page-header">
@@ -103,4 +105,9 @@
         <button type="submit" >Speichern</button>
     </form>
 
+ </c:if>
+ </c:if>
+ <c:if test="${pageContext.request.isUserInRole('kunde')}">
+ <h1>Keine Berechtigung!</h1><br>
+ <a href="/Adressbuch/AddressList.jsp" class="btn btn-default">Zurück zum Adressbuch</a>
  </c:if>

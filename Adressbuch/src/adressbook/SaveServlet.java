@@ -27,46 +27,54 @@ public class SaveServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Adress adr = new Adress();
-		adr.setAddressform(request.getParameter("addressform"));
-		adr.setBirthday(request.getParameter("birthday"));
-		adr.setChristianname(request.getParameter("christianname"));
-		adr.setCity(request.getParameter("city"));
-		adr.setCountry(request.getParameter("country"));
-		adr.setEmail(request.getParameter("email"));
-		adr.setMobile(request.getParameter("mobile"));
-		adr.setName(request.getParameter("name"));
-		adr.setNumber(Integer.parseInt(request.getParameter("number")));
-		adr.setPhone(request.getParameter("phone"));
-		adr.setPostcode(request.getParameter("postcode"));
-		adr.setStreet(request.getParameter("street"));
-		try {
-			adr.save();
-		} catch (Exception e) {
-		}
+		PrintWriter out = response.getWriter();
+		int postcode=Integer.parseInt(request.getParameter("postcode"));
+		if (postcode>69999 && postcode<80000){
+			adr.setAddressform(request.getParameter("addressform"));
+			adr.setBirthday(request.getParameter("birthday"));
+			adr.setChristianname(request.getParameter("christianname"));
+			adr.setCity(request.getParameter("city"));
+			adr.setCountry(request.getParameter("country"));
+			adr.setEmail(request.getParameter("email"));
+			adr.setMobile(request.getParameter("mobile"));
+			adr.setName(request.getParameter("name"));
+			adr.setNumber(Integer.parseInt(request.getParameter("number")));
+			adr.setPhone(request.getParameter("phone"));
+			adr.setPostcode(request.getParameter("postcode"));
+			adr.setStreet(request.getParameter("street"));
+			try {
+				adr.save();
+			} catch (Exception e) {
+			}
 		
-		if (adr.fehler==true){
-			PrintWriter out = response.getWriter();
-			out.println("<h1>Änderungen erfolgreich gespeichert</h1><br><br>");
-			if(request.getParameter("id")==null){
-				out.println("<a href='/Adressbuch/AddressList.jsp' class='btn btn-default'>Zurück</a>");
+			if (adr.fehler==true){
+				
+				out.println("<h1>Änderungen erfolgreich gespeichert</h1><br><br>");
+				if(request.getParameter("id")==null){
+					out.println("<a href='/Adressbuch/AddressList.jsp' class='btn btn-default'>Zurück</a>");
+				}
+				else{
+					out.println("<a href='/Adressbuch/Address.jsp?id="+request.getParameter("id")+"class='btn btn-default'>Zurück</a>");
+				}
 			}
-			else{
-				out.println("<a href='/Adressbuch/Address.jsp?id="+request.getParameter("id")+"class='btn btn-default'>Zurück</a>");
-			}
-		}
-		if (adr.fehler==false){
-			PrintWriter out = response.getWriter();
-			out.println("<h1>Änderungen erfolgreich gespeichert</h1><br><br>");
-			if(request.getParameter("id")==null){
-				out.println("<a href='/Adressbuch/AddressList.jsp' class='btn btn-default'>Zurück</a>");
-			}
+			if (adr.fehler==false){
+				
+				out.println("<h1>Änderungen erfolgreich gespeichert</h1><br><br>");
+				if(request.getParameter("id")==null){
+					out.println("<a href='/Adressbuch/AddressList.jsp' class='btn btn-default'>Zurück</a>");
+				}
 			else{
 				out.println("<a href='/Adressbuch/Address.jsp?id="+request.getParameter("id")+"'class='btn btn-default'>Zurück</a>");
 			}
 			
 		}
 	}
+		else{
+			out.println("<h1>Sie haben hierfür keine Berechtigung<h1><br>");
+			out.println("<a href='/Adressbuch/AdressForm.jsp?id="+request.getParameter("id")+"'>Zurück</a>");
+		}
 
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
